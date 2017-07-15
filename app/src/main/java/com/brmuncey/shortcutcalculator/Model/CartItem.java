@@ -13,6 +13,7 @@ class CartItem {
     public CartItem(double price, ItemType type){
         this.price = price;
         this.type = type;
+        setPriceWTax(this.price);
     }
 
     public void setPrice(double price){ this.price = price; }
@@ -21,7 +22,7 @@ class CartItem {
 
     public ItemType getType() { return type; }
 
-    public void setPriceWTax(double price) {
+    private void setPriceWTax(double price) {
         SalesTaxCalculator stc = new SalesTaxCalculator(State.Alabama);
         priceWTax = stc.getTaxedPrice(price); }
 

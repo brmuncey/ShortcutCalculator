@@ -6,9 +6,7 @@ public class Location {
 
     private double salesTax;
 
-    public Location(State state){
-        salesTax = lookUpStateTax(state);
-    }
+    public Location(State state){ salesTax = lookUpStateTax(state); }
 
     private double lookUpStateTax(State state) { return 0.08; } // todo connect to firebase db and get state sales tax data.
 

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "62806150954",
+    "firebase_url": "https://shortcutcalculator.firebaseio.com",
+    "project_id": "shortcutcalculator",
+    "storage_bucket": "shortcutcalculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62806150954:android:686c0bfd0f7b7100",
+        "android_client_info": {
+          "package_name": "com.brmuncey.shortcutcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62806150954-fkpnrufrdcopaeiedslo7oa77v094j1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnuMZmKmVQ9LzL0hpZKBGDOcLZ24U5CTg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
