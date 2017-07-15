@@ -12,9 +12,7 @@ public class ShoppingCart {
     public void deleteItem(CartItem item) { if(getItemIndex(item) > -1){ cart.remove(getItemIndex(item)); } }
 
     private int getItemIndex(CartItem item) {
-        for(int i = 0; i < cart.size() ; i++){
-            if(cart.get(i).getPrice() == item.getPrice() && cart.get(i).getType() == item.getType()){ return i; }
-        }
+        for(int i = 0; i < cart.size() ; i++){ if(cart.get(i).getPrice() == item.getPrice() && cart.get(i).getType() == item.getType()){ return i; } }
         return -1;
     }
 
