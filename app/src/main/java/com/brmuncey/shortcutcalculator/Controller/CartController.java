@@ -1,9 +1,7 @@
 package com.brmuncey.shortcutcalculator.Controller;
 
-
 import com.brmuncey.shortcutcalculator.Model.CartItem;
 import com.brmuncey.shortcutcalculator.Model.ShoppingCart;
-
 
 public class CartController {
 
@@ -18,5 +16,4 @@ public class CartController {
     public double getTaxedTotal(){ return cart.getTaxedTotal(); }
 
     public void updateItemPrice(CartItem item, double newPrice) { if(cart.getItem(item) != null) { cart.getItem(item).updatePrice(newPrice); } }
-
 }
