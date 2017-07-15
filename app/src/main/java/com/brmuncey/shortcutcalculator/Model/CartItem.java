@@ -2,7 +2,7 @@ package com.brmuncey.shortcutcalculator.Model;
 
 import com.brmuncey.shortcutcalculator.Data.State;
 
-class CartItem {
+public class CartItem {
 
     public enum ItemType { FOOD , HOUSEHOLD , ELECTRONIC , OTHER }
 
@@ -10,21 +10,21 @@ class CartItem {
     private ItemType type;
     private double priceWTax;
 
-    public CartItem(double price, ItemType type){
+    CartItem(double price, ItemType type){
         this.price = price;
         this.type = type;
         setPriceWTax(this.price);
     }
 
-    public void setPrice(double price){ this.price = price; }
+    public void updatePrice(double price){ this.price = price; }
 
-    public double getPrice() { return price; }
+    double getPrice() { return price; }
 
-    public ItemType getType() { return type; }
+    ItemType getType() { return type; }
 
     private void setPriceWTax(double price) {
         SalesTaxCalculator stc = new SalesTaxCalculator(State.Alabama);
         priceWTax = stc.getTaxedPrice(price); }
 
-    private double getPriceWTax() { return priceWTax; }
+    double getPriceWTax() { return priceWTax; }
 }
