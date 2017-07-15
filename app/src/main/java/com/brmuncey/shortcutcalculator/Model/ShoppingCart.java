@@ -35,5 +35,4 @@ public class ShoppingCart {
         if(index == -1) { return null; }
         return cart.get(index);
     }
-
 }
