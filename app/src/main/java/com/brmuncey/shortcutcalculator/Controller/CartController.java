@@ -11,25 +11,17 @@ public class CartController {
 
     public void addToCart(double price  , CartItem.ItemType type){ cart.addItem(price, type); }
 
-    public void deleteFromCart(CartItem item) { cart.deleteItem(item); }
+    //public void deleteFromCart(CartItem item) { cart.deleteItem(item); }
 
-    public double getTotal(){ return cart.getTotal(); }
+    //public double getTotal(){ return cart.getTotal(); }
 
-    public String getTaxedTotal() {
-        return cart.getTaxedTotal();
-    }
+    public String getTaxedTotal() { return cart.getTaxedTotal(); }
 
-    public void updateItemPrice(CartItem item, double newPrice) { if(cart.getItem(item) != null) { cart.getItem(item).updatePrice(newPrice); } }
+    //public void updateItemPrice(CartItem item, double newPrice) { if(cart.getItem(item) != null) { cart.getItem(item).updatePrice(newPrice); } }
 
-    public CartItem.ItemType getItemType(int index) {
-        return CartItem.ItemType.values()[index];
-    }
+    public CartItem.ItemType getItemType(int index) { return CartItem.ItemType.values()[index]; }
 
-    public List<CartItem> getCart() {
-        return cart.getCart();
-    }
+    public List<CartItem> getCart() { return cart.getCart(); }
 
-    public boolean checkForState() {
-        return false;
-    }
+    public boolean checkForState() { return false; }
 }
