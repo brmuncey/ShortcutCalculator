@@ -21,6 +21,7 @@
         </activity>
         <activity
             android:name=".View.MultiActivity"
+            android:label="@string/multi_activity"
             android:parentActivityName=".View.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -28,6 +29,7 @@
         </activity>
         <activity
             android:name=".View.TipActivity"
+            android:label="@string/tip_activity"
             android:parentActivityName=".View.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,6 +37,7 @@
         </activity>
         <activity
             android:name=".View.SalesTaxActivity"
+            android:label="@string/sales_tax_activity"
             android:parentActivityName=".View.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
