@@ -61,7 +61,7 @@ public class MultiActivity extends AppCompatActivity {
 
     private void updateListView() {
         List<CartItem> itemList = cartController.getCartAsList();
-        ArrayAdapter<CartItem> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList); //// TODO: 7/16/17 build custom adapter for objects 
+        ArrayAdapter<CartItem> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
         cartListView.setAdapter(arrayAdapter);
     }
 
