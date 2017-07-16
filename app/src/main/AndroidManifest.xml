@@ -22,7 +22,8 @@
         <activity
             android:name=".View.MultiActivity"
             android:label="@string/multi_activity"
-            android:parentActivityName=".View.MainActivity">
+            android:parentActivityName=".View.MainActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".View.MainActivity" />

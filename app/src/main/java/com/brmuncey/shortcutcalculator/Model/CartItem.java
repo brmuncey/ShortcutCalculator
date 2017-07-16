@@ -9,6 +9,7 @@ public class CartItem {
     private double price;
     private ItemType type;
     private double priceWTax;
+    private State state;
 
     CartItem(double price, ItemType type){
         this.price = price;
@@ -29,17 +30,20 @@ public class CartItem {
     }
 
     private void setPriceWTax(double price) {
-        SalesTaxCalculator stc = new SalesTaxCalculator(State.Alabama);
-        priceWTax = stc.getTaxedPrice(price);
+        priceWTax = new SalesTaxCalculator(state).getTaxedPrice(price);
     }
 
     @Override
     public String toString() {
-        return getType().toString() + "\t" + format(getPriceWTax());
+        return getType().toString() + "\tTaxed: " + format(getPriceWTax());
     }
 
     private String format(double price) {
         return NumberFormat.getCurrencyInstance().format(price);
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     public enum ItemType {FOOD, HOUSEHOLD, ELECTRONIC, OTHER}

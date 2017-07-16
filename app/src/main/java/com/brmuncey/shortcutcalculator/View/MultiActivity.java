@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +21,6 @@ import com.brmuncey.shortcutcalculator.R;
 import java.util.List;
 
 import static android.support.v7.app.AlertDialog.Builder;
-import static com.brmuncey.shortcutcalculator.Model.CartItem.ItemType;
 
 public class MultiActivity extends AppCompatActivity {
 
@@ -32,6 +33,7 @@ public class MultiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi);
         setupComponents();
+        if (!cartController.checkForState()) { /*set state, save to json */}
     }
 
     private void setupComponents() {
@@ -52,11 +54,11 @@ public class MultiActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 if (!priceField.getText().toString().isEmpty()) {
                     double price = Double.parseDouble(priceField.getText().toString());
-                    ItemType type = cartController.getItemType(which);
-                    cartController.addToCart(price, type);
+                    cartController.addToCart(price, cartController.getItemType(which));
                     priceField.getText().clear();
                     updateListView();
                     updateTotal();
+                    hideKeyboard();
                     toast("Item added");
                 } else {
                     toast("You must enter a price");
@@ -64,6 +66,15 @@ public class MultiActivity extends AppCompatActivity {
             }
         });
         builder.create().show();
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        try {
+            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        } catch (NullPointerException e) {
+            Log.d("KB", "Problem hiding keyboard");
+        }
     }
 
     private void updateTotal() {
@@ -76,7 +87,7 @@ public class MultiActivity extends AppCompatActivity {
     }
 
     private void updateListView() {
-        List<CartItem> itemList = cartController.getCartAsList();
+        List<CartItem> itemList = cartController.getCart();
         ArrayAdapter<CartItem> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
         cartListView.setAdapter(arrayAdapter);
     }

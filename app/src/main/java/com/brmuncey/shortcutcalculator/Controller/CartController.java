@@ -25,7 +25,11 @@ public class CartController {
         return CartItem.ItemType.values()[index];
     }
 
-    public List<CartItem> getCartAsList() {
+    public List<CartItem> getCart() {
         return cart.getCart();
+    }
+
+    public boolean checkForState() {
+        return false;
     }
 }

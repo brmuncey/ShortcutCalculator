@@ -62,7 +62,7 @@
     <ListView
         android:id="@+id/cartListView"
         android:layout_width="369dp"
-        android:layout_height="393dp"
+        android:layout_height="390dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
