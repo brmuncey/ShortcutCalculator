@@ -15,7 +15,9 @@ public class CartController {
 
     public double getTotal(){ return cart.getTotal(); }
 
-    public double getTaxedTotal(){ return cart.getTaxedTotal(); }
+    public String getTaxedTotal() {
+        return cart.getTaxedTotal();
+    }
 
     public void updateItemPrice(CartItem item, double newPrice) { if(cart.getItem(item) != null) { cart.getItem(item).updatePrice(newPrice); } }
 

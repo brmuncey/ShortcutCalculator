@@ -1,5 +1,6 @@
 package com.brmuncey.shortcutcalculator.Model;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,10 +23,10 @@ public class ShoppingCart {
         return total;
     }
 
-    public double getTaxedTotal() {
+    public String getTaxedTotal() {
         double total = 0;
         for(CartItem c : cart) { total += c.getPriceWTax(); }
-        return total;
+        return NumberFormat.getCurrencyInstance().format(total);
     }
 
     public CartItem getItem(CartItem item) {

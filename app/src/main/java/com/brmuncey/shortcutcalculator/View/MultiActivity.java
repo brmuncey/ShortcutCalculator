@@ -1,5 +1,6 @@
 package com.brmuncey.shortcutcalculator.View;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.brmuncey.shortcutcalculator.Controller.CartController;
 import com.brmuncey.shortcutcalculator.Model.CartItem;
@@ -36,27 +39,40 @@ public class MultiActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDialog1();
+                showDialog();
             }
         });
         priceField = (EditText) findViewById(R.id.priceText);
         cartListView = (ListView) findViewById(R.id.cartListView);
     }
 
-    private void showDialog1() {
-
-
-        Builder builder = new Builder(MultiActivity.this);
+    private void showDialog() {
+        Builder builder = new Builder(getActivity());
         builder.setTitle("Item Type").setItems(R.array.itemtypes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                double price = Double.parseDouble(priceField.getText().toString());
-                ItemType type = cartController.getItemType(which);
-                cartController.addToCart(price, type);
-                priceField.getText().clear();
-                updateListView();
+                if (!priceField.getText().toString().isEmpty()) {
+                    double price = Double.parseDouble(priceField.getText().toString());
+                    ItemType type = cartController.getItemType(which);
+                    cartController.addToCart(price, type);
+                    priceField.getText().clear();
+                    updateListView();
+                    updateTotal();
+                    toast("Item added");
+                } else {
+                    toast("You must enter a price");
+                }
             }
         });
         builder.create().show();
+    }
+
+    private void updateTotal() {
+        TextView priceLabel = (TextView) findViewById(R.id.priceLabel);
+        priceLabel.setText(cartController.getTaxedTotal());
+    }
+
+    private void toast(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
     }
 
     private void updateListView() {
@@ -65,4 +81,7 @@ public class MultiActivity extends AppCompatActivity {
         cartListView.setAdapter(arrayAdapter);
     }
 
+    private Context getActivity() {
+        return MultiActivity.this;
+    }
 }

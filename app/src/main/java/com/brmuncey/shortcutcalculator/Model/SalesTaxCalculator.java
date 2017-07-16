@@ -8,5 +8,7 @@ public class SalesTaxCalculator extends Calculator {
 
     public SalesTaxCalculator(State state){ tax = new Location(state).getSalesTax(); }
 
-    public double getTaxedPrice(double x) { return x * tax; }
+    public double getTaxedPrice(double price) {
+        return price + (price * tax);
+    }
 }
