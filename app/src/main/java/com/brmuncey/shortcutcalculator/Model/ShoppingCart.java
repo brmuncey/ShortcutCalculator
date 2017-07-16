@@ -33,4 +33,10 @@ public class ShoppingCart {
         if(index == -1) { return null; }
         return cart.get(index);
     }
+
+    public List<CartItem> getCart() {
+        return cart;
+    }
+
+
 }

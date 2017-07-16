@@ -4,12 +4,9 @@ import com.brmuncey.shortcutcalculator.Data.State;
 
 public class CartItem {
 
-    public enum ItemType { FOOD , HOUSEHOLD , ELECTRONIC , OTHER }
-
     private double price;
     private ItemType type;
     private double priceWTax;
-
     CartItem(double price, ItemType type){
         this.price = price;
         this.type = type;
@@ -18,13 +15,19 @@ public class CartItem {
 
     public void updatePrice(double price){ this.price = price; }
 
-    double getPrice() { return price; }
+    public double getPrice() {
+        return price;
+    }
 
     ItemType getType() { return type; }
+
+    double getPriceWTax() {
+        return priceWTax;
+    }
 
     private void setPriceWTax(double price) {
         SalesTaxCalculator stc = new SalesTaxCalculator(State.Alabama);
         priceWTax = stc.getTaxedPrice(price); }
 
-    double getPriceWTax() { return priceWTax; }
+    public enum ItemType {FOOD, HOUSEHOLD, ELECTRONIC, OTHER}
 }

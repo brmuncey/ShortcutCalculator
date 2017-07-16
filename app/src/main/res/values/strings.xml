@@ -7,4 +7,8 @@
     <string name="multi_activity">Multi-Item Shopping</string>
     <string name="tip_activity">Tip Calculator</string>
     <string name="sales_tax_activity">Single Item Sales Tax</string>
+    <string name="add_item">Add Item</string>
+    <string name="price">Price</string>
+    <string name="total">Total</string>
+    <string name="_0_00">$ 0.00</string>
 </resources>

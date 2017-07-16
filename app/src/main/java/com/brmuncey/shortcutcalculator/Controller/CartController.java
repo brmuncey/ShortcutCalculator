@@ -3,6 +3,8 @@ package com.brmuncey.shortcutcalculator.Controller;
 import com.brmuncey.shortcutcalculator.Model.CartItem;
 import com.brmuncey.shortcutcalculator.Model.ShoppingCart;
 
+import java.util.List;
+
 public class CartController {
 
     private ShoppingCart cart = new ShoppingCart();
@@ -16,4 +18,12 @@ public class CartController {
     public double getTaxedTotal(){ return cart.getTaxedTotal(); }
 
     public void updateItemPrice(CartItem item, double newPrice) { if(cart.getItem(item) != null) { cart.getItem(item).updatePrice(newPrice); } }
+
+    public CartItem.ItemType getItemType(int index) {
+        return CartItem.ItemType.values()[index];
+    }
+
+    public List<CartItem> getCartAsList() {
+        return cart.getCart();
+    }
 }
