@@ -18,8 +18,6 @@ import com.brmuncey.shortcutcalculator.Controller.CartController;
 import com.brmuncey.shortcutcalculator.Model.CartItem;
 import com.brmuncey.shortcutcalculator.R;
 
-import java.util.List;
-
 import static android.support.v7.app.AlertDialog.Builder;
 
 public class MultiActivity extends AppCompatActivity {
@@ -27,6 +25,7 @@ public class MultiActivity extends AppCompatActivity {
     private CartController cartController = new CartController();
     private EditText priceField;
     private ListView cartListView;
+    private Button addBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +36,17 @@ public class MultiActivity extends AppCompatActivity {
     }
 
     private void setupComponents() {
-        Button addBtn = (Button) findViewById(R.id.addBtn);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDialog();
-            }
-        });
+        addBtn = (Button) findViewById(R.id.addBtn);
         priceField = (EditText) findViewById(R.id.priceText);
         cartListView = (ListView) findViewById(R.id.cartListView);
+        addClickListeners();
+    }
+
+    private void addClickListeners() {
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { showDialog(); }
+        });
     }
 
     private void showDialog() {
@@ -60,9 +61,7 @@ public class MultiActivity extends AppCompatActivity {
                     updateTotal();
                     hideKeyboard();
                     toast("Item added");
-                } else {
-                    toast("You must enter a price");
-                }
+                } else { toast("You must enter a price"); }
             }
         });
         builder.create().show();
@@ -70,11 +69,8 @@ public class MultiActivity extends AppCompatActivity {
 
     private void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        try {
-            inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-        } catch (NullPointerException e) {
-            Log.d("KB", "Problem hiding keyboard");
-        }
+        try { inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS); }
+        catch (NullPointerException e) { Log.d("KB", "Problem hiding keyboard"); }
     }
 
     private void updateTotal() {
@@ -82,17 +78,12 @@ public class MultiActivity extends AppCompatActivity {
         priceLabel.setText(cartController.getTaxedTotal());
     }
 
-    private void toast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-    }
+    private void toast(String message) { Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show(); }
 
     private void updateListView() {
-        List<CartItem> itemList = cartController.getCart();
-        ArrayAdapter<CartItem> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, itemList);
-        cartListView.setAdapter(arrayAdapter);
+        ArrayAdapter<CartItem> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cartController.getCart());
+        cartListView.setAdapter(adapter);
     }
 
-    private Context getActivity() {
-        return MultiActivity.this;
-    }
+    private Context getActivity() { return MultiActivity.this; }
 }
