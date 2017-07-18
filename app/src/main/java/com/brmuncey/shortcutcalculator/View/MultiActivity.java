@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,7 +22,7 @@ import com.brmuncey.shortcutcalculator.R;
 
 import static android.support.v7.app.AlertDialog.Builder;
 
-public class MultiActivity extends AppCompatActivity {
+public class MultiActivity extends AppCompatActivity{
 
     private CartController cartController = new CartController();
     private EditText priceField;
@@ -32,7 +34,7 @@ public class MultiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi);
         setupComponents();
-        if (!cartController.checkForState()) { /*set state, save to json */}
+        //if (!cartController.checkForState()) { /*set state, save to json */} todo check for state retrieve tax
     }
 
     private void setupComponents() {
@@ -47,6 +49,31 @@ public class MultiActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { showDialog(); }
         });
+        cartListView.setOnItemClickListener( new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { editPopup(parent.getItemAtPosition(position)); }
+        });
+    }
+
+    private void editPopup(Object object) {
+        CartItem item = (CartItem) object;
+        toast(item.toString() + " Selected");
+
+        //TextView currLbl = (TextView) findViewById(R.id.itemLbl);
+
+        final Builder builder = new Builder(getActivity());
+        builder.setTitle(R.string.updateItemTitle).setView(R.layout.edit_item)
+            .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    //todo update item. update listview.
+                }
+            }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //todo exit update dialog
+                    }
+                });
+        builder.create().show();
     }
 
     private void showDialog() {
@@ -67,6 +94,7 @@ public class MultiActivity extends AppCompatActivity {
         builder.create().show();
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         try { inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS); }
@@ -86,4 +114,5 @@ public class MultiActivity extends AppCompatActivity {
     }
 
     private Context getActivity() { return MultiActivity.this; }
+
 }
