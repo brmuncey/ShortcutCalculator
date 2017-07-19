@@ -1,5 +1,6 @@
 package com.brmuncey.shortcutcalculator.View;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,11 +14,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.brmuncey.shortcutcalculator.Controller.CartController;
 import com.brmuncey.shortcutcalculator.Model.CartItem;
+import com.brmuncey.shortcutcalculator.Model.CartItem.ItemType;
 import com.brmuncey.shortcutcalculator.R;
 
 import static android.support.v7.app.AlertDialog.Builder;
@@ -57,23 +60,57 @@ public class MultiActivity extends AppCompatActivity{
 
     private void editPopup(Object object) {
         CartItem item = (CartItem) object;
-        toast(item.toString() + " Selected");
 
-        //TextView currLbl = (TextView) findViewById(R.id.itemLbl);
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.edit_item);
 
-        final Builder builder = new Builder(getActivity());
-        builder.setTitle(R.string.updateItemTitle).setView(R.layout.edit_item)
-            .setPositiveButton(R.string.update, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                    //todo update item. update listview.
-                }
-            }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        //todo exit update dialog
-                    }
-                });
-        builder.create().show();
+        TextView currLbl = (TextView) dialog.findViewById(R.id.itemLbl);
+        currLbl.setText(item.getItemInfo());
+
+        EditText newPrice = (EditText) dialog.findViewById(R.id.updatePriceBox);
+        String price = Double.toString(item.getPrice());
+        newPrice.setText(price);
+
+        Spinner spinner = (Spinner) dialog.findViewById(R.id.typeSpinner);
+        spinner.setSelection(getPosition(spinner,item));
+
+        addEditBtnListeners(dialog,item);
+
+        dialog.show();
+    }
+
+    private void addEditBtnListeners(final Dialog dialog, final CartItem item) {
+        Button update = (Button) dialog.findViewById(R.id.updateBtn);
+        Button cancel = (Button) dialog.findViewById(R.id.cancelBtn);
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText v1 = (EditText) dialog.findViewById(R.id.updatePriceBox);
+                Spinner spinner = (Spinner) dialog.findViewById(R.id.typeSpinner);
+
+                cartController.updateItem( v1.getText().toString() , spinner.getSelectedItem().toString().toUpperCase() , item);
+                updateListView();
+                dialog.hide();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { dialog.hide(); }
+        });
+
+    }
+
+    private int getPosition(Spinner spinner, CartItem item) {
+        int index = 0;
+        for(int i = 0; i < ItemType.values().length; i++){
+            if(spinner.getItemAtPosition(i).toString().equalsIgnoreCase(item.getType().toString())){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     private void showDialog() {

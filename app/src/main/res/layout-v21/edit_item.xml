@@ -130,6 +130,7 @@
                     android:backgroundTint="@android:color/holo_red_light"
                     android:text="@string/cancelBtn"
                     android:textColor="@android:color/white"
+                    tools:ignore="ButtonStyle"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="204dp" />
 
@@ -140,6 +141,7 @@
                     android:backgroundTint="@android:color/holo_green_dark"
                     android:text="@string/updateBtn"
                     android:textColor="@android:color/white"
+                    tools:ignore="ButtonStyle"
                     tools:layout_editor_absoluteX="16dp"
                     tools:layout_editor_absoluteY="408dp" />
             </TableRow>

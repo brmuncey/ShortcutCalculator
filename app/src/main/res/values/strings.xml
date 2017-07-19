@@ -13,8 +13,11 @@
     <string name="_0_00">$0.00</string>
     <string name="update">Update</string>
     <string name="cancel">Cancel</string>
-    <string name="updateItemTitle">Update Item</string>
     <string name="current">Current</string>
     <string name="item_type">Item Type</string>
     <string name="new_price">New Price</string>
+    <string name="cancelBtn">Cancel</string>
+    <string name="cartitem">CartItem</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="updateBtn">Update</string>
 </resources>

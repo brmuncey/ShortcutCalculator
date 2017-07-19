@@ -23,5 +23,12 @@ public class CartController {
 
     public List<CartItem> getCart() { return cart.getCart(); }
 
-    public boolean checkForState() { return false; }
+    //public boolean checkForState() { return false; }
+
+    public void updateItem(String newPrice, String newType, CartItem item) {
+        double price = Double.parseDouble(newPrice);
+        if(price != item.getPrice()) { item.updatePrice(price); }
+
+        if(CartItem.ItemType.valueOf(newType) != item.getType()) { item.updateType(CartItem.ItemType.valueOf(newType)); }
+    }
 }

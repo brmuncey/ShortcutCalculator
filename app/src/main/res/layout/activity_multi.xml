@@ -55,6 +55,7 @@
         android:layout_marginStart="8dp"
         android:fontFamily="sans-serif-smallcaps"
         android:text="@string/_0_00"
+        android:textAlignment="textEnd"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/totalLabel"
