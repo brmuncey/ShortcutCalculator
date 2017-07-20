@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "62806150954-49aknobpl03op2q77mp3mgv3snenp2sk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.brmuncey.shortcutcalculator",
+            "certificate_hash": "8c04189ac4105adf31232e2605bbe25a0f11d249"
+          }
+        },
+        {
           "client_id": "62806150954-fkpnrufrdcopaeiedslo7oa77v094j1q.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -22,6 +30,9 @@
       "api_key": [
         {
           "current_key": "AIzaSyDnuMZmKmVQ9LzL0hpZKBGDOcLZ24U5CTg"
+        },
+        {
+          "current_key": "AIzaSyDNNiBgIWAcxiOwkYrTOQWHW1Kj0g6Ur6Y"
         }
       ],
       "services": {
@@ -29,8 +40,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "62806150954-fkpnrufrdcopaeiedslo7oa77v094j1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

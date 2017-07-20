@@ -1,5 +1,7 @@
 package com.brmuncey.shortcutcalculator.Model;
 
+import com.brmuncey.shortcutcalculator.Controller.CartController;
+
 import java.text.NumberFormat;
 
 public class CartItem {
@@ -29,7 +31,7 @@ public class CartItem {
         return priceWTax;
     }
 
-    private void setPriceWTax(double price) { priceWTax = new SalesTaxCalculator().getTaxedPrice(price); }
+    private void setPriceWTax(double price) { priceWTax = price + (price * CartController.userState.getSalesTax()); }
 
     @Override
     public String toString() { return getType().toString() + "\tTaxed: " + format(getPriceWTax()); }

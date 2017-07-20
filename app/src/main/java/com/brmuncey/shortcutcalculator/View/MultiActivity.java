@@ -23,6 +23,9 @@ import com.brmuncey.shortcutcalculator.Model.CartItem;
 import com.brmuncey.shortcutcalculator.Model.CartItem.ItemType;
 import com.brmuncey.shortcutcalculator.R;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import static android.support.v7.app.AlertDialog.Builder;
 
 public class MultiActivity extends AppCompatActivity{
@@ -37,7 +40,22 @@ public class MultiActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi);
         setupComponents();
-        //if (!cartController.checkForState()) { /*set state, save to json */} todo check for state retrieve tax
+        if(getState() != null) { cartController.setState(getState()); }
+        else { /*popup to set state */ }
+    }
+
+    private String getState() {
+        try {
+            InputStream is = getActivity().getAssets().open("user.json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            return new String(buffer, "UTF-8");
+        } catch (IOException ex) {
+            //toast("Error");
+            return null;
+        }
     }
 
     private void setupComponents() {
