@@ -119,13 +119,6 @@ public class MultiActivity extends AppCompatActivity{
             public void onClick(View v) { dialog.hide(); }
         });
 
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { dialog.hide(); }
-        });
-
-
-
     }
 
     private int getPosition(Spinner spinner, CartItem item) {
