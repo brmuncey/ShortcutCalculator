@@ -107,16 +107,26 @@ public class MultiActivity extends AppCompatActivity{
             public void onClick(View v) {
                 EditText v1 = (EditText) dialog.findViewById(R.id.updatePriceBox);
                 Spinner spinner = (Spinner) dialog.findViewById(R.id.typeSpinner);
-
                 cartController.updateItem( v1.getText().toString() , spinner.getSelectedItem().toString().toUpperCase() , item);
                 updateListView();
                 dialog.hide();
+                toast("Item updated");
             }
         });
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { dialog.hide(); }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cartController.deleteItem(item);
+                updateListView();
+                dialog.hide();
+                toast("Item deleted");
+            }
         });
 
     }
