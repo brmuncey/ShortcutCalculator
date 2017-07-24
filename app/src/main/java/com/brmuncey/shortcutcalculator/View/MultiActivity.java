@@ -41,7 +41,14 @@ public class MultiActivity extends AppCompatActivity{
         setContentView(R.layout.activity_multi);
         setupComponents();
         if(getState() != null) { cartController.setState(getState()); }
-        else { /*popup to set state */ }
+        else { showStateSelector(); }
+    }
+
+    private void showStateSelector() {
+        Log.d("State", "Showing state selector");
+        Dialog dialog = new Dialog(getActivity());
+        dialog.setContentView(R.layout.select_state);
+        dialog.show();
     }
 
     private String getState() {
@@ -53,7 +60,6 @@ public class MultiActivity extends AppCompatActivity{
             is.close();
             return new String(buffer, "UTF-8");
         } catch (IOException ex) {
-            //toast("Error");
             return null;
         }
     }
@@ -160,7 +166,6 @@ public class MultiActivity extends AppCompatActivity{
         builder.create().show();
     }
 
-    @SuppressWarnings("ConstantConditions")
     private void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         try { inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS); }
