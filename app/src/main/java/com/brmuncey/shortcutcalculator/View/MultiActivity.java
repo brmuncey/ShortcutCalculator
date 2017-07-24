@@ -100,6 +100,7 @@ public class MultiActivity extends AppCompatActivity{
     private void addEditBtnListeners(final Dialog dialog, final CartItem item) {
         Button update = (Button) dialog.findViewById(R.id.updateBtn);
         Button cancel = (Button) dialog.findViewById(R.id.cancelBtn);
+        Button delete = (Button) dialog.findViewById(R.id.deleteItemBtn);
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +118,13 @@ public class MultiActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) { dialog.hide(); }
         });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { dialog.hide(); }
+        });
+
+
 
     }
 

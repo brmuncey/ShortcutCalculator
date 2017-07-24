@@ -41,4 +41,5 @@ public class CartController {
         userState.setSalesTax( state );
     }
 
+    public void deleteItem(CartItem item) { cart.deleteItem(item); }
 }

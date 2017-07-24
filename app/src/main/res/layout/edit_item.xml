@@ -112,12 +112,15 @@
             tools:layout_editor_absoluteX="8dp"
             tools:layout_editor_absoluteY="8dp">
 
-            <TextView
-                android:id="@+id/placeHolder"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                tools:layout_editor_absoluteY="59dp" />
+            <Button
+                android:id="@+id/updateBtn"
+                android:layout_width="108dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/holo_green_dark"
+                android:text="@string/updateBtn"
+                android:textColor="@android:color/white"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="408dp" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -127,21 +130,20 @@
                     android:id="@+id/cancelBtn"
                     android:layout_width="107dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/holo_red_light"
+                    android:backgroundTint="@android:color/holo_orange_light"
                     android:text="@string/cancelBtn"
                     android:textColor="@android:color/white"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="204dp" />
 
                 <Button
-                    android:id="@+id/updateBtn"
-                    android:layout_width="108dp"
+                    android:id="@+id/deleteItemBtn"
+                    android:layout_width="107dp"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@android:color/holo_green_dark"
-                    android:text="@string/updateBtn"
-                    android:textColor="@android:color/white"
-                    tools:layout_editor_absoluteX="16dp"
-                    tools:layout_editor_absoluteY="408dp" />
+                    android:backgroundTint="@android:color/holo_red_light"
+                    android:text="@string/delete"
+                    android:textColor="@android:color/white" />
+
             </TableRow>
 
         </TableRow>
