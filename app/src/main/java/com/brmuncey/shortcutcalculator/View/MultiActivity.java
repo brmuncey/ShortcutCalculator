@@ -40,7 +40,7 @@ public class MultiActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi);
         setupComponents();
-        if(getState() != null) { cartController.setState(getState()); }
+        if(loadStateFromJson() != null) { cartController.setState(loadStateFromJson()); }
         else { showStateSelector(); }
     }
 
@@ -51,7 +51,8 @@ public class MultiActivity extends AppCompatActivity{
         dialog.show();
     }
 
-    private String getState() {
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    private String loadStateFromJson() {
         try {
             InputStream is = getActivity().getAssets().open("user.json");
             int size = is.available();
@@ -166,6 +167,7 @@ public class MultiActivity extends AppCompatActivity{
         builder.create().show();
     }
 
+    @SuppressWarnings("ConstantConditions")
     private void hideKeyboard() {
         InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         try { inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS); }
