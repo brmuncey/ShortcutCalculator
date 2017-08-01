@@ -12,9 +12,6 @@ import static com.brmuncey.shortcutcalculator.View.Toast.makeToast;
 
 public class TipActivity extends AppCompatActivity {
 
-    private Button calculate;
-    private Button clear;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +20,8 @@ public class TipActivity extends AppCompatActivity {
     }
 
     private void setupButtons() {
-        calculate = (Button) findViewById(R.id.calculateBtn);
-        clear = (Button) findViewById(R.id.clearBtn);
+        Button calculate = (Button) findViewById(R.id.calculateBtn);
+        Button clear = (Button) findViewById(R.id.clearBtn);
 
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
