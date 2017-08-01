@@ -16,7 +16,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.brmuncey.shortcutcalculator.Controller.CartController;
 import com.brmuncey.shortcutcalculator.Model.CartItem;
@@ -27,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import static android.support.v7.app.AlertDialog.Builder;
+import static com.brmuncey.shortcutcalculator.View.Toast.makeToast;
 
 public class MultiActivity extends AppCompatActivity{
 
@@ -117,7 +117,7 @@ public class MultiActivity extends AppCompatActivity{
                 cartController.updateItem( v1.getText().toString() , spinner.getSelectedItem().toString().toUpperCase() , item);
                 updateListView();
                 dialog.hide();
-                toast("Item updated");
+                makeToast(getActivity(),"Item updated");
             }
         });
 
@@ -132,7 +132,7 @@ public class MultiActivity extends AppCompatActivity{
                 cartController.deleteItem(item);
                 updateListView();
                 dialog.hide();
-                toast("Item deleted");
+                makeToast(getActivity(),"Item deleted");
             }
         });
 
@@ -160,8 +160,8 @@ public class MultiActivity extends AppCompatActivity{
                     updateListView();
                     updateTotal();
                     hideKeyboard();
-                    toast("Item added");
-                } else { toast("You must enter a price"); }
+                    makeToast(getActivity(),"Item added");
+                } else { makeToast(getActivity(),"You must enter a price"); }
             }
         });
         builder.create().show();
@@ -178,8 +178,6 @@ public class MultiActivity extends AppCompatActivity{
         TextView priceLabel = (TextView) findViewById(R.id.priceLabel);
         priceLabel.setText(cartController.getTaxedTotal());
     }
-
-    private void toast(String message) { Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show(); }
 
     private void updateListView() {
         ArrayAdapter<CartItem> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, cartController.getCart());
