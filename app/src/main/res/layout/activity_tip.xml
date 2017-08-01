@@ -13,6 +13,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
+        android:entries="@array/tip_percents"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/priceBox"
         app:layout_constraintRight_toRightOf="parent"
