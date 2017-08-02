@@ -21,4 +21,8 @@
     <string name="edit_item">Edit Item</string>
     <string name="updateBtn">Update</string>
     <string name="delete">Delete</string>
+    <string name="tipLbl">Tip:</string>
+    <string name="calculate">Calculate</string>
+    <string name="clear">Clear</string>
+    <string name="badInput">Invalid Input</string>
 </resources>

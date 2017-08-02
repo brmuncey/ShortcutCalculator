@@ -1,6 +1,8 @@
 package com.brmuncey.shortcutcalculator.Controller;
 
 import com.brmuncey.shortcutcalculator.Data.State;
+import com.brmuncey.shortcutcalculator.Helper.CurrencyFormatter;
+import com.brmuncey.shortcutcalculator.Model.Calculator;
 import com.brmuncey.shortcutcalculator.Model.CartItem;
 import com.brmuncey.shortcutcalculator.Model.ShoppingCart;
 import com.brmuncey.shortcutcalculator.Model.UserState;
@@ -12,13 +14,11 @@ public class CartController {
 
     public static UserState userState;
     private ShoppingCart cart = new ShoppingCart();
-    private State state;
 
     public void addToCart(double price  , CartItem.ItemType type){ cart.addItem(price, type); }
 
-    //public void deleteFromCart(CartItem item) { cart.deleteItem(item); }
-
-    //public double getTotal(){ return cart.getTotal(); }
+    public String getTip(String price, String tipPercentage){
+        return CurrencyFormatter.format(new Calculator().computeTip(Double.parseDouble(price), Double.parseDouble(tipPercentage))); }
 
     public String getTaxedTotal() { return cart.getTaxedTotal(); }
 
@@ -37,8 +37,8 @@ public class CartController {
 
     public void setState(String stateJson) {
         userState = new Gson().fromJson( stateJson , UserState.class );
-        this.state = userState.getState();
-        userState.setSalesTax( state );
+        State state = userState.getState();
+        userState.setSalesTax(state);
     }
 
     public void deleteItem(CartItem item) { cart.deleteItem(item); }
