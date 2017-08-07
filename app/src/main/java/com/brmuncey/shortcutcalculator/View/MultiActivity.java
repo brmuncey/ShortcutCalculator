@@ -18,12 +18,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.brmuncey.shortcutcalculator.Controller.CartController;
+import com.brmuncey.shortcutcalculator.Helper.StateFetcher;
 import com.brmuncey.shortcutcalculator.Model.CartItem;
 import com.brmuncey.shortcutcalculator.Model.CartItem.ItemType;
 import com.brmuncey.shortcutcalculator.R;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 import static android.support.v7.app.AlertDialog.Builder;
 import static com.brmuncey.shortcutcalculator.View.Toast.makeToast;
@@ -40,7 +38,9 @@ public class MultiActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multi);
         setupComponents();
-        if(loadStateFromJson() != null) { cartController.setState(loadStateFromJson()); }
+
+        StateFetcher stateFetcher = new StateFetcher();
+        if(stateFetcher.loadStateFromJson(getActivity()) != null) { cartController.setState(stateFetcher.loadStateFromJson(getActivity())); }
         else { showStateSelector(); }
     }
 
@@ -49,20 +49,6 @@ public class MultiActivity extends AppCompatActivity{
         Dialog dialog = new Dialog(getActivity());
         dialog.setContentView(R.layout.select_state);
         dialog.show();
-    }
-
-    @SuppressWarnings("ResultOfMethodCallIgnored")
-    private String loadStateFromJson() {
-        try {
-            InputStream is = getActivity().getAssets().open("user.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            return new String(buffer, "UTF-8");
-        } catch (IOException ex) {
-            return null;
-        }
     }
 
     private void setupComponents() {

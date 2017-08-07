@@ -17,12 +17,9 @@ public class CartController {
 
     public void addToCart(double price  , CartItem.ItemType type){ cart.addItem(price, type); }
 
-    public String getTip(String price, String tipPercentage){
-        return CurrencyFormatter.format(new Calculator().computeTip(Double.parseDouble(price), Double.parseDouble(tipPercentage))); }
+    public String getTip(String price, String tipPercentage){ return CurrencyFormatter.format(new Calculator().computeTip(Double.parseDouble(price), Double.parseDouble(tipPercentage))); }
 
     public String getTaxedTotal() { return cart.getTaxedTotal(); }
-
-    //public void updateItemPrice(CartItem item, double newPrice) { if(cart.getItem(item) != null) { cart.getItem(item).updatePrice(newPrice); } }
 
     public CartItem.ItemType getItemType(int index) { return CartItem.ItemType.values()[index]; }
 
@@ -42,4 +39,6 @@ public class CartController {
     }
 
     public void deleteItem(CartItem item) { cart.deleteItem(item); }
+
+    public String getSingleItemTax(String s) { return new Calculator().computeSalesTax(s,userState.getSalesTax()); }
 }

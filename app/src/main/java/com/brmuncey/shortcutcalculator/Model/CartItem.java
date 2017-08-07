@@ -36,9 +36,7 @@ public class CartItem {
     @Override
     public String toString() { return getType().toString() + "\tTaxed: " + format(getPriceWTax()); }
 
-    private String format(double price) {
-        return NumberFormat.getCurrencyInstance().format(price);
-    }
+    private String format(double price) { return NumberFormat.getCurrencyInstance().format(price); }
 
     public void updateType(ItemType newType) { type = newType; }
 
